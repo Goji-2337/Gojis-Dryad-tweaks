@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+    <Goji_MustBeConnectedPawn>{PAWN_kindDef} must be the pawn connected to {TREE_labelShort}.</Goji_MustBeConnectedPawn>
+    <Goji_RitualTargetMustBeConnectedGauranlenTree>Target must be a connected Gauranlen tree.</Goji_RitualTargetMustBeConnectedGauranlenTree>
+    <Goji_RitualTargetConnectedGauranlenTreeInfo>A connected Gauranlen tree.</Goji_RitualTargetConnectedGauranlenTreeInfo>
+    <Goji_NoValidRecipientFound>No valid recipient found. The recipient must be a colonist of the same ideoligion who is not already connected to a Gauranlen tree.</Goji_NoValidRecipientFound>
+    <Goji_RecipientAlreadyConnected>{PAWN_kindDef} is already connected to a Gauranlen tree.</Goji_RecipientAlreadyConnected>
+    <Goji_ConnectionTransferred>Connection transferred</Goji_ConnectionTransferred>
+    <Goji_ConnectionTransferred_Description>The Gauranlen tree connection was successfully transferred from {INITIATOR_labelShort} to {RECIPIENT_labelShort}.</Goji_ConnectionTransferred_Description>
+    <Goji_RitualOutcomeExtraDesc_CocoonFormed>{PAWN_nameDef} was enveloped in a healing cocoon.</Goji_RitualOutcomeExtraDesc_CocoonFormed>
+    <Goji_PerDryad>per dryad</Goji_PerDryad>
+    <Goji_Max>max</Goji_Max>
+    <Goji_TerribleCocoonRitual>Terrible cocoon ritual</Goji_TerribleCocoonRitual>
+    <Goji_BoringCocoonRitual>Boring cocoon ritual</Goji_BoringCocoonRitual>
+    <Goji_BeautifulCocoonRitual>Beautiful cocoon ritual</Goji_BeautifulCocoonRitual>
+    <Goji_UnforgettableCocoonRitual>Unforgettable cocoon ritual</Goji_UnforgettableCocoonRitual>
+    <Goji_MustBeColonist>Must be a colonist.</Goji_MustBeColonist>
+    <Goji_MustBeHumanlike>Must be humanlike.</Goji_MustBeHumanlike>
+    <Goji_MustHaveInjuryOrIllnessForCocoon>{PAWN_kindDef} does not have any significant injuries or illnesses requiring cocoon healing.</Goji_MustHaveInjuryOrIllnessForCocoon>
+    <Goji_CocoonHealedAllWounds>{0} has had all wounds healed by the cocoon.</Goji_CocoonHealedAllWounds>
+    <Goji_CocoonHealedPermanentWound>{0} has had a permanent wound in the {1} healed by the cocoon.</Goji_CocoonHealedPermanentWound>
+</LanguageData>

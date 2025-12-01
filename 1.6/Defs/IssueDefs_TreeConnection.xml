@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <IssueDef>
+        <defName>Goji_DryadLifespan</defName>
+        <label>dryad lifespan</label>
+        <iconPath>UI/Issues/DryadLifespan</iconPath>
+    </IssueDef>
+
+    <IssueDef>
+        <defName>Goji_DryadAutonomy</defName>
+        <label>dryad autonomy</label>
+        <iconPath>UI/Issues/DryadAutonomy</iconPath>
+    </IssueDef>
+
+    <IssueDef>
+        <defName>Goji_GauranlenConnectionStrength</defName>
+        <label>gauranlen connection</label>
+        <iconPath>UI/Issues/GauranlenConnection</iconPath>
+    </IssueDef>
+
+</Defs>

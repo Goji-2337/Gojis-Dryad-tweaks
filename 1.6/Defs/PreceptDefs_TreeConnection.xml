@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <PreceptDef>
+        <defName>Goji_DryadLifespan_Immortal</defName>
+        <issue>Goji_DryadLifespan</issue>
+        <label>immortal</label>
+        <description>The bond between tree and soul transcends death. Those dryads blessed by the sacred groves do not perish, they always return to the earth.</description>
+        <impact>Medium</impact>
+        <displayOrderInIssue>50</displayOrderInIssue>
+        <requiredMemes>
+            <li>TreeConnection</li>
+        </requiredMemes>
+    </PreceptDef>
+
+    <PreceptDef>
+        <defName>Goji_DryadAutonomy_High</defName>
+        <issue>Goji_DryadAutonomy</issue>
+        <label>high</label>
+        <description>Dryads are not mere extensions of the tree. These sentient spirits choose their bonds, fight alongside kin, and endure beyond broken links — awaiting the reunion.</description>
+        <impact>Medium</impact>
+        <displayOrderInIssue>60</displayOrderInIssue>
+        <requiredMemes>
+            <li>TreeConnection</li>
+        </requiredMemes>
+    </PreceptDef>
+
+    <PreceptDef>
+        <defName>Goji_GauranlenConnection_NatureAttuned</defName>
+        <issue>Goji_GauranlenConnectionStrength</issue>
+        <label>nature attuned</label>
+        <description>The Gauranlen’s spirit recognises all forms that come from nature, be it root, branch, timber, or rock.</description>
+        <impact>Medium</impact>
+        <displayOrderInIssue>70</displayOrderInIssue>
+        <requiredMemes>
+            <li>TreeConnection</li>
+        </requiredMemes>
+    </PreceptDef>
+
+</Defs>

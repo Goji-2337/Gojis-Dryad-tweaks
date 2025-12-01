@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <JobDef>
+        <defName>Goji_EnterHealingPod</defName>
+        <driverClass>GojisDryadTweaks.JobDriver_EnterHealingPod</driverClass>
+        <reportString>entering healing pod.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+
+    <JobDef>
+        <defName>Goji_EnterCocoon</defName>
+        <driverClass>GojisDryadTweaks.JobDriver_EnterCocoon</driverClass>
+        <reportString>entering cocoon.</reportString>
+        <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+    </JobDef>
+
+</Defs>

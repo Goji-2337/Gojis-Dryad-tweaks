@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <AbilityGroupDef>
+        <defName>Goji_TurnDryadCocoonGroup</defName>
+        <cooldownTicks>1200000</cooldownTicks>
+        <ritualRoleIds>
+            <li>initiator</li>
+        </ritualRoleIds>
+    </AbilityGroupDef>
+
+    <PreceptDef>
+        <defName>Goji_TurnDryadCocoon</defName>
+        <label>turn dryad cocoon</label>
+        <description>Perform a ritual at a connected Gauranlen tree to envelop a colonist in a healing cocoon.</description>
+        <issue>Ritual</issue>
+        <impact>Medium</impact>
+        <preceptClass>Precept_Ritual</preceptClass>
+        <visible>false</visible>
+        <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
+        <selectionWeight>1.0</selectionWeight>
+        <requiredMemes>
+            <li>TreeConnection</li>
+        </requiredMemes>
+        <ritualPatternBase>Goji_TurnDryadCocoonPattern</ritualPatternBase>
+        <iconPath>UI/Icons/Rituals/TreeConnection</iconPath>
+        <useCooldownFromAbilityGroupDef>Goji_TurnDryadCocoonGroup</useCooldownFromAbilityGroupDef>
+        <mergeRitualGizmosFromAllIdeos>true</mergeRitualGizmosFromAllIdeos>
+        <ignoreNameUniqueness>true</ignoreNameUniqueness>
+        <useRepeatPenalty>false</useRepeatPenalty>
+        <classic>true</classic>
+        <capitalizeAsTitle>false</capitalizeAsTitle>
+    </PreceptDef>
+
+    <RitualPatternDef>
+        <defName>Goji_TurnDryadCocoonPattern</defName>
+        <ritualBehavior>Goji_TurnDryadCocoonBehavior</ritualBehavior>
+        <ritualOutcomeEffect>Goji_TurnDryadCocoonOutcome</ritualOutcomeEffect>
+        <ritualObligationTargetFilter>Goji_ConnectedGauranlenTree</ritualObligationTargetFilter>
+        <alwaysStartAnytime>true</alwaysStartAnytime>
+    </RitualPatternDef>
+
+    <RitualBehaviorDef>
+        <defName>Goji_TurnDryadCocoonBehavior</defName>
+        <durationTicks>5000</durationTicks>
+        <roles>
+            <li Class="GojisDryadTweaks.RitualRoleColonistHealable">
+                <id>initiator</id>
+                <label>healee</label>
+                <required>true</required>
+                <maxCount>1</maxCount>
+                <missingDesc>a colonist with injuries or illness</missingDesc>
+                <countsAsParticipant>False</countsAsParticipant>
+                <ignoreBleeding>true</ignoreBleeding>
+            </li>
+            <li Class="RitualRoleTag">
+                <label>moral guide</label>
+                <id>moralist</id>
+                <tag>Moralist</tag>
+                <precept>IdeoRole_Moralist</precept>
+                <required>False</required>
+                <maxCount>1</maxCount>
+                <countsAsParticipant>True</countsAsParticipant>
+                <allowChild>false</allowChild>
+            </li>
+        </roles>
+        <spectatorsLabel>Spectators</spectatorsLabel>
+        <spectatorGerund>spectate</spectatorGerund>
+        <stages>
+            <li>
+                <defaultDuty>SpectateCircle</defaultDuty>
+                <endTriggers>
+                    <li Class="StageEndTrigger_RolesArrived">
+                        <roleIds>
+                            <li>initiator</li>
+                        </roleIds>
+                    </li>
+                </endTriggers>
+                <roleBehaviors>
+                    <li>
+                        <roleId>initiator</roleId>
+                        <dutyDef>ArriveToCell</dutyDef>
+                        <customPositions>
+                            <li Class="RitualPosition_BesideTree" />
+                        </customPositions>
+                    </li>
+                </roleBehaviors>
+            </li>
+            <li>
+                <defaultDuty>SpectateCircle</defaultDuty>
+                <endTriggers>
+                    <li Class="StageEndTrigger_DurationPercentage">
+                        <percentage>1</percentage>
+                    </li>
+                </endTriggers>
+                <roleBehaviors>
+                    <li>
+                        <roleId>initiator</roleId>
+                        <dutyDef>StandOnCell</dutyDef>
+                    </li>
+                </roleBehaviors>
+            </li>
+        </stages>
+    </RitualBehaviorDef>
+
+    <RitualOutcomeEffectDef>
+        <defName>Goji_TurnDryadCocoonOutcome</defName>
+        <workerClass>GojisDryadTweaks.RitualOutcomeEffectWorker_TurnDryadCocoon</workerClass>
+        <description>Depending on ritual quality, participants gain mood, and a healing cocoon is formed for the healee. Normal success will heal all wounds. Big success will heal all wounds plus one permanent injury.</description>
+        <comps>
+            <li Class="RitualOutcomeComp_ParticipantCount">
+                <label>participant count</label>
+                <curve>
+                    <points>
+                        <li>(1, 0.0)</li>
+                        <li>(10, 0.25)</li>
+                    </points>
+                </curve>
+            </li>
+            <li Class="RitualOutcomeComp_RolePresentNotSubstituted">
+                <roleId>moralist</roleId>
+                <label>moral guide present</label>
+                <qualityOffset>0.2</qualityOffset>
+            </li>
+            <li Class="GojisDryadTweaks.RitualOutcomeComp_NearbyDryads">
+                <label>nearby dryads</label>
+                <qualityOffsetPerDryad>0.03</qualityOffsetPerDryad>
+                <maxQualityOffset>0.35</maxQualityOffset>
+            </li>
+            <li Class="RitualOutcomeComp_RitualSeatPresent">
+                <label>ritual seats</label>
+                <qualityOffset>0.2</qualityOffset>
+            </li>
+        </comps>
+        <outcomeChances>
+            <li>
+                <label>Terrible</label>
+                <chance>0.1</chance>
+                <memory>Goji_TerribleCocoonRitual</memory>
+                <description>The ritual felt disjointed and meaningless. No cocoon formed.</description>
+                <positivityIndex>-2</positivityIndex>
+            </li>
+            <li>
+                <label>Boring</label>
+                <chance>0.2</chance>
+                <memory>Goji_BoringCocoonRitual</memory>
+                <description>The ritual lacked any real spiritual connection. No cocoon formed.</description>
+                <positivityIndex>-1</positivityIndex>
+            </li>
+            <li>
+                <label>Beautiful</label>
+                <chance>0.5</chance>
+                <memory>Goji_BeautifulCocoonRitual</memory>
+                <description>The ritual was spiritually satisfying, and a healing cocoon formed around the healee. The cocoon will heal all wounds.</description>
+                <positivityIndex>1</positivityIndex>
+            </li>
+            <li>
+                <label>Unforgettable</label>
+                <chance>0.2</chance>
+                <memory>Goji_UnforgettableCocoonRitual</memory>
+                <description>The ritual was deeply moving, strengthening the connection to nature. A potent healing cocoon formed around the healee. The cocoon will heal all wounds and one permanent injury.</description>
+                <positivityIndex>3</positivityIndex>
+            </li>
+        </outcomeChances>
+    </RitualOutcomeEffectDef>
+
+</Defs>

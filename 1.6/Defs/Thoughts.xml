@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+    <ThoughtDef>
+        <defName>Goji_TerribleCocoonRitual</defName>
+        <durationDays>2</durationDays>
+        <thoughtClass>Thought_AttendedRitual</thoughtClass>
+        <stackLimit>1</stackLimit>
+        <stages>
+            <li>
+                <label>terrible cocoon ritual</label>
+                <description>The ritual felt disjointed and meaningless.</description>
+                <baseMoodEffect>-2</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>Goji_BoringCocoonRitual</defName>
+        <durationDays>2</durationDays>
+        <thoughtClass>Thought_AttendedRitual</thoughtClass>
+        <stackLimit>1</stackLimit>
+        <stages>
+            <li>
+                <label>boring cocoon ritual</label>
+                <description>The ritual lacked any real spiritual connection.</description>
+                <baseMoodEffect>-1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>Goji_BeautifulCocoonRitual</defName>
+        <durationDays>3</durationDays>
+        <thoughtClass>Thought_AttendedRitual</thoughtClass>
+        <stackLimit>1</stackLimit>
+        <stages>
+            <li>
+                <label>beautiful cocoon ritual</label>
+                <description>The ritual was spiritually satisfying.</description>
+                <baseMoodEffect>1</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+    <ThoughtDef>
+        <defName>Goji_UnforgettableCocoonRitual</defName>
+        <durationDays>4</durationDays>
+        <thoughtClass>Thought_AttendedRitual</thoughtClass>
+        <stackLimit>1</stackLimit>
+        <stages>
+            <li>
+                <label>unforgettable cocoon ritual</label>
+                <description>The ritual was deeply moving, strengthening the connection to nature.</description>
+                <baseMoodEffect>3</baseMoodEffect>
+            </li>
+        </stages>
+    </ThoughtDef>
+
+</Defs>

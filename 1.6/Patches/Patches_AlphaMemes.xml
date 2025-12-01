@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Alpha Memes</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/PreceptDef[defName="Goji_DryadLifespan_Immortal"]/requiredMemes</xpath>
+                </li>
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/PreceptDef[defName="Goji_DryadLifespan_Immortal"]</xpath>
+                    <value>
+                        <requiredMemes>
+                            <li>AM_GauranlenSupremacy</li>
+                        </requiredMemes>
+                    </value>
+                </li>
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/PreceptDef[defName="Goji_DryadAutonomy_High"]/requiredMemes</xpath>
+                </li>
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/PreceptDef[defName="Goji_DryadAutonomy_High"]</xpath>
+                    <value>
+                        <requiredMemes>
+                            <li>AM_GauranlenSupremacy</li>
+                        </requiredMemes>
+                    </value>
+                </li>
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/PreceptDef[defName="Goji_GauranlenConnection_NatureAttuned"]/requiredMemes</xpath>
+                </li>
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/PreceptDef[defName="Goji_GauranlenConnection_NatureAttuned"]</xpath>
+                    <value>
+                        <requiredMemes>
+                            <li>AM_GauranlenSupremacy</li>
+                        </requiredMemes>
+                    </value>
+                </li>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/MemeDef[defName="AM_GauranlenSupremacy"]/requireOne</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/MemeDef[defName="AM_GauranlenSupremacy"]/requireOne</xpath>
+                        <value>
+                            <li>
+                                <li>Goji_DryadLifespan_Immortal</li>
+                            </li>
+                            <li>
+                                <li>Goji_DryadAutonomy_High</li>
+                            </li>
+                            <li>
+                                <li>Goji_GauranlenConnection_NatureAttuned</li>
+                            </li>
+                        </value>
+                    </match>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/MemeDef[defName="AM_GauranlenSupremacy"]</xpath>
+                        <value>
+                            <requireOne>
+                                <li>
+                                    <li>Goji_DryadLifespan_Immortal</li>
+                                </li>
+                                <li>
+                                    <li>Goji_DryadAutonomy_High</li>
+                                </li>
+                                <li>
+                                    <li>Goji_GauranlenConnection_NatureAttuned</li>
+                                </li>
+                            </requireOne>
+                        </value>
+                    </nomatch>
+                </li>
+            </operations>
+        </match>
+    </Operation>
+</Patch>

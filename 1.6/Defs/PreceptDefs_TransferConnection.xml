@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+    <AbilityGroupDef>
+        <defName>Goji_TransferConnection</defName>
+        <cooldownTicks>1200000</cooldownTicks>
+        <sendMessageOnCooldownComplete>true</sendMessageOnCooldownComplete>
+        <ritualRoleIds>
+            <li>initiator</li>
+        </ritualRoleIds>
+    </AbilityGroupDef>
+
+    <PreceptDef>
+        <defName>Goji_TransferConnection</defName>
+        <label>transfer connection</label>
+        <description>Transfer the connection to a Gauranlen tree from one believer to another. The connection strength is maintained, and the original connector feels no loss.</description>
+        <issue>Ritual</issue>
+        <preceptClass>Precept_Ritual</preceptClass>
+        <visible>false</visible>
+        <countsTowardsPreceptLimit>false</countsTowardsPreceptLimit>
+        <selectionWeight>1.0</selectionWeight>
+        <mergeRitualGizmosFromAllIdeos>true</mergeRitualGizmosFromAllIdeos>
+        <ignoreNameUniqueness>true</ignoreNameUniqueness>
+        <useCooldownFromAbilityGroupDef>Goji_TransferConnection</useCooldownFromAbilityGroupDef>
+        <requiredMemes>
+            <li>TreeConnection</li>
+        </requiredMemes>
+        <ritualPatternBase>Goji_TransferConnectionPattern</ritualPatternBase>
+        <iconPath>UI/Icons/Rituals/TreeConnection</iconPath>
+        <useRepeatPenalty>false</useRepeatPenalty>
+        <classic>true</classic>
+        <capitalizeAsTitle>false</capitalizeAsTitle>
+    </PreceptDef>
+
+    <RitualBehaviorDef>
+        <defName>Goji_TransferConnectionBehavior</defName>
+        <workerClass>GojisDryadTweaks.RitualBehaviorWorker_TransferConnection</workerClass>
+        <durationTicks>3000</durationTicks>
+        <useVisualEffectsFromRoleIdIdeo>initiator</useVisualEffectsFromRoleIdIdeo>
+        <spectatorsLabel>Spectators</spectatorsLabel>
+        <spectatorGerund>spectate</spectatorGerund>
+        <roles>
+            <li Class="GojisDryadTweaks.RitualRole_ConnectedTreeConnecter">
+                <id>initiator</id>
+                <label>connector</label>
+                <categoryLabel>initiator</categoryLabel>
+                <required>true</required>
+                <maxCount>1</maxCount>
+                <missingDesc>a connector is required.</missingDesc>
+                <countsAsParticipant>False</countsAsParticipant>
+                <allowChild>false</allowChild>
+                <mustBeAbleToReachTarget>True</mustBeAbleToReachTarget>
+            </li>
+            <li Class="RitualRoleColonist">
+                <id>recipient</id>
+                <label>recipient</label>
+                <categoryLabel>recipient</categoryLabel>
+                <required>true</required>
+                <maxCount>1</maxCount>
+                <allowOtherIdeos>false</allowOtherIdeos>
+                <missingDesc>a recipient is required.</missingDesc>
+                <countsAsParticipant>False</countsAsParticipant>
+                <allowChild>false</allowChild>
+                <mustBeAbleToReachTarget>True</mustBeAbleToReachTarget>
+            </li>
+        </roles>
+        <stages>
+            <li>
+                <defaultDuty>SpectateCircle</defaultDuty>
+                <endTriggers>
+                    <li Class="StageEndTrigger_DurationPercentage">
+                        <percentage>1</percentage>
+                    </li>
+                </endTriggers>
+                <roleBehaviors>
+                    <li>
+                        <roleId>initiator</roleId>
+                        <dutyDef>SpeakOnCell</dutyDef>
+                        <speakerInteraction>Speech_TreeConnection</speakerInteraction>
+                        <customPositions>
+                            <li Class="RitualPosition_InFrontThingCenter" />
+                        </customPositions>
+                    </li>
+                    <li>
+                        <roleId>recipient</roleId>
+                        <dutyDef>SpeakOnCell</dutyDef>
+                        <speakerInteraction>Speech_TreeConnection</speakerInteraction>
+                        <customPositions>
+                            <li Class="RitualPosition_BehindThingCenter" />
+                        </customPositions>
+                    </li>
+                </roleBehaviors>
+            </li>
+        </stages>
+    </RitualBehaviorDef>
+
+    <RitualObligationTargetFilterDef>
+        <defName>Goji_ConnectedGauranlenTree</defName>
+        <workerClass>GojisDryadTweaks.RitualObligationTargetWorker_ConnectedGauranlenTree</workerClass>
+        <label>connected Gauranlen tree</label>
+        <description>A Gauranlen tree that is currently connected to one of your colonists.</description>
+    </RitualObligationTargetFilterDef>
+    <RitualOutcomeEffectDef>
+        <defName>Goji_TransferConnectionOutcome</defName>
+        <description>Transfers the Gauranlen tree connection from the initiator to the recipient, maintaining existing connection strength.</description>
+        <workerClass>GojisDryadTweaks.RitualOutcomeEffectWorker_TransferConnection</workerClass>
+        <givesDevelopmentPoints>false</givesDevelopmentPoints>
+        <warnOnLowQuality>false</warnOnLowQuality>
+        <extraPredictedOutcomeDescriptions>
+            <li>After ritual completion, the Gauranlen tree connection will be transfered to the recipient.</li>
+        </extraPredictedOutcomeDescriptions>
+        <comps>
+            <li Class="RitualOutcomeComp_ParticipantCount">
+                <label>participant count</label>
+                <curve>
+                    <points>
+                        <li>(1,  1)</li>
+                        <li>(10, 1)</li>
+                    </points>
+                </curve>
+            </li>
+        </comps>
+    </RitualOutcomeEffectDef>
+
+    <RitualPatternDef>
+        <defName>Goji_TransferConnectionPattern</defName>
+        <ritualBehavior>Goji_TransferConnectionBehavior</ritualBehavior>
+        <ritualOutcomeEffect>Goji_TransferConnectionOutcome</ritualOutcomeEffect>
+        <ritualObligationTargetFilter>Goji_ConnectedGauranlenTree</ritualObligationTargetFilter>
+        <alwaysStartAnytime>true</alwaysStartAnytime>
+        <iconPathOverride>UI/Icons/Rituals/TreeConnection</iconPathOverride>
+        <ritualOnlyForIdeoMembers>true</ritualOnlyForIdeoMembers>
+        <tags>
+            <li>TreeConnection</li>
+        </tags>
+    </RitualPatternDef>
+
+</Defs>

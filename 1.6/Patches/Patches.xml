@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+    <Operation Class="PatchOperationAddModExtension">
+        <xpath>/Defs/HediffDef[@Name="DiseaseBase"]</xpath>
+        <value>
+            <li Class="GojisDryadTweaks.DiseaseMarker" />
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationAdd">
+        <xpath>/Defs/ThingDef[defName="Plant_TreeGauranlen"]/comps/li[@Class="CompProperties_SpawnSubplant"]/plantsToNotOverwrite</xpath>
+        <value>
+            <li>Plant_TreeGauranlen</li>
+            <li>PlantPot_Bonsai</li>
+        </value>
+    </Operation>
+
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Alpha Memes</li>
+        </mods>
+        <nomatch Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationConditional">
+                    <xpath>/Defs/MemeDef[defName="TreeConnection"]/requireOne</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>/Defs/MemeDef[defName="TreeConnection"]/requireOne</xpath>
+                        <value>
+                            <li>
+                                <li>Goji_DryadLifespan_Immortal</li>
+                            </li>
+                            <li>
+                                <li>Goji_DryadAutonomy_High</li>
+                            </li>
+                            <li>
+                                <li>Goji_GauranlenConnection_NatureAttuned</li>
+                            </li>
+                        </value>
+                    </match>
+                    <nomatch Class="PatchOperationAdd">
+                        <xpath>/Defs/MemeDef[defName="TreeConnection"]</xpath>
+                        <value>
+                            <requireOne>
+                                <li>
+                                    <li>Goji_DryadLifespan_Immortal</li>
+                                </li>
+                                <li>
+                                    <li>Goji_DryadAutonomy_High</li>
+                                </li>
+                                <li>
+                                    <li>Goji_GauranlenConnection_NatureAttuned</li>
+                                </li>
+                            </requireOne>
+                        </value>
+                    </nomatch>
+                </li>
+            </operations>
+        </nomatch>
+    </Operation>
+
+</Patch>
