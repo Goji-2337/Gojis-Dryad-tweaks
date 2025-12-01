@@ -15,6 +15,11 @@ namespace GojisDryadTweaks
             if (treeComp != null && treeComp.ConnectedPawn != null && __instance.innerContainer.FirstOrDefault() is Pawn dryad && treeComp.ConnectedPawn.relations.DirectRelationExists(PawnRelationDefOf.Bond, dryad))
             {
                 bondedMaster = treeComp.ConnectedPawn;
+                var relation = bondedMaster.relations.GetDirectRelation(PawnRelationDefOf.Bond, dryad);
+                if (relation != null)
+                {
+                    bondedMaster.relations.RemoveDirectRelation(relation);
+                }
             }
         }
 
