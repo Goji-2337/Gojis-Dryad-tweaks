@@ -10,6 +10,7 @@ namespace GojisDryadTweaks
     public static class Building_PlantGrower_Patches
     {
         public static Building_PlantGrower toBeDespawned;
+        
         [HarmonyPatch(typeof(Building_PlantGrower), nameof(Building_PlantGrower.DeSpawn))]
         [HarmonyPrefix]
         public static void DeSpawn_Prefix(Building_PlantGrower __instance)
@@ -30,6 +31,20 @@ namespace GojisDryadTweaks
         public static void DeSpawn_Postfix(Building_PlantGrower __instance)
         {
             toBeDespawned = null;
+        }
+
+        [HarmonyPatch(typeof(Building), nameof(Building.Destroy))]
+        [HarmonyPrefix]
+        private static void Destroy_Prefix(Building __instance, DestroyMode mode)
+        {
+            if (__instance.def != GojiDefsOf.PlantPot_Bonsai || __instance is not Building_PlantGrower grower) return;
+            foreach (Plant plant in grower.PlantsOnMe)
+            {
+                if (plant.def == ThingDefOf.Plant_TreeGauranlen)
+                {
+                    plant.Destroy(mode);
+                }
+            }
         }
 
         [HarmonyPatch(typeof(Building_PlantGrower), nameof(Building_PlantGrower.PlantsOnMe), MethodType.Getter)]

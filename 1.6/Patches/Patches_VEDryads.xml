@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Vanilla Ideology Expanded - Dryads</li>
+        </mods>
+        <match Class="PatchOperationSequence">
+            <operations>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="VDE_Dryad_Nectarmaker"]/comps/li[@Class="CompProperties_Spawner"]/spawnCount</xpath>
+                    <value>
+                        <spawnCount>1</spawnCount>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="VDE_Dryad_Gaubricmaker"]/comps/li[@Class="VEF.AnimalBehaviours.CompProperties_AnimalProduct"]</xpath>
+                    <value>
+                        <li Class="CompProperties_Spawner">
+                            <thingToSpawn>Cloth</thingToSpawn>
+                            <spawnCount>28</spawnCount>
+                            <spawnIntervalRange>120000</spawnIntervalRange>
+                            <writeTimeLeftToSpawn>true</writeTimeLeftToSpawn>
+                            <showMessageIfOwned>true</showMessageIfOwned>
+                        </li>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="VDE_Dryad_Gaubricmaker"]/description</xpath>
+                    <value>
+                        <description>A caste of dryad which specializes in cotton production. Together with its Gauranlen tree, this dryad can generate fluffy, cotton-like material on an ongoing basis. However, it is slow and ineffective at work or combat.\n\nIn general, dryads are mammal-like creatures that have a symbiotic relationship with the Gauranlen tree. They reproduce together with their tree, which contains a hidden dryad queen. Dryads can morph into various specialized castes.</description>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/ThingDef[defName="VDE_Dryad_Gaubricmaker"]/label</xpath>
+                    <value>
+                        <label>clothweaver dryad</label>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/GauranlenTreeModeDef[defName="VDE_Gaubricmaker"]/description</xpath>
+                    <value>
+                        <description>A caste of dryad which specializes in cotton production. Together with its Gauranlen tree, this dryad can generate fluffy, cotton-like material on an ongoing basis. However, it is slow and ineffective at work or combat.</description>
+                    </value>
+                </li>
+                <li Class="PatchOperationReplace">
+                    <xpath>/Defs/GauranlenTreeModeDef[defName="VDE_Gaubricmaker"]/label</xpath>
+                    <value>
+                        <label>clothweaver</label>
+                    </value>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+
+</Patch>
