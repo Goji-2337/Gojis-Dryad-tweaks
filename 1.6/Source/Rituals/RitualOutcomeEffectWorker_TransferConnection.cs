@@ -28,36 +28,54 @@ namespace GojisDryadTweaks
                 Log.Error($"Goji_TransferConnection ritual outcome: Initiator {initiator.LabelShort} is not the connected pawn of tree {tree.LabelShort}, or tree has no CompTreeConnection.");
                 return;
             }
-            var oldStrength = treeComp.connectionStrength;
-            var oldDesiredStrength = treeComp.desiredConnectionStrength;
-            var oldMode = treeComp.currentMode;
-            var oldDesiredMode = treeComp.desiredMode;
-            var oldDryads = new List<Pawn>(treeComp.dryads);
-            initiator.connections?.ConnectedThings.Remove(tree);
-            treeComp.connectedPawn = recipient;
-            recipient.connections?.ConnectTo(tree);
-            treeComp.connectionStrength = oldStrength;
-            treeComp.desiredConnectionStrength = oldDesiredStrength;
-            treeComp.currentMode = oldMode;
-            treeComp.desiredMode = oldDesiredMode;
-            treeComp.dryads.Clear();
-            treeComp.dryads.AddRange(oldDryads);
-            foreach (var dryad in treeComp.dryads)
+
+            var connectedComps = new List<CompTreeConnection>();
+            foreach (var connectedThing in initiator.connections?.ConnectedThings ?? Enumerable.Empty<Thing>())
             {
-                if (treeComp.Connected && dryad.Faction != treeComp.ConnectedPawn?.Faction)
+                var comp = connectedThing.TryGetComp<CompTreeConnection>();
+                if (comp != null)
                 {
-                    dryad.SetFaction(treeComp.ConnectedPawn?.Faction);
+                    connectedComps.Add(comp);
                 }
-                if (dryad.training != null)
+            }
+
+            foreach (var comp in connectedComps)
+            {
+                if (comp.ConnectedPawn != initiator)
                 {
-                    foreach (TrainableDef allDef in DefDatabase<TrainableDef>.AllDefs)
+                    continue;
+                }
+                var oldStrength = comp.connectionStrength;
+                var oldDesiredStrength = comp.desiredConnectionStrength;
+                var oldMode = comp.currentMode;
+                var oldDesiredMode = comp.desiredMode;
+                var oldDryads = new List<Pawn>(comp.dryads);
+                initiator.connections?.ConnectedThings.Remove(comp.parent);
+                comp.connectedPawn = recipient;
+                recipient.connections?.ConnectTo(comp.parent);
+                comp.connectionStrength = oldStrength;
+                comp.desiredConnectionStrength = oldDesiredStrength;
+                comp.currentMode = oldMode;
+                comp.desiredMode = oldDesiredMode;
+                comp.dryads.Clear();
+                comp.dryads.AddRange(oldDryads);
+                foreach (var dryad in comp.dryads)
+                {
+                    if (comp.Connected && dryad.Faction != comp.ConnectedPawn?.Faction)
                     {
-                        if (dryad.training.CanAssignToTrain(allDef).Accepted)
+                        dryad.SetFaction(comp.ConnectedPawn?.Faction);
+                    }
+                    if (dryad.training != null)
+                    {
+                        foreach (TrainableDef allDef in DefDatabase<TrainableDef>.AllDefs)
                         {
-                            dryad.training.SetWantedRecursive(allDef, checkOn: true);
-                            if (allDef == TrainableDefOf.Release)
+                            if (dryad.training.CanAssignToTrain(allDef).Accepted)
                             {
-                                dryad.playerSettings.followDrafted = true;
+                                dryad.training.SetWantedRecursive(allDef, checkOn: true);
+                                if (allDef == TrainableDefOf.Release)
+                                {
+                                    dryad.playerSettings.followDrafted = true;
+                                }
                             }
                         }
                     }
