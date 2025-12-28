@@ -79,6 +79,18 @@ namespace GojisDryadTweaks
                             }
                         }
                     }
+                    if (dryad.relations != null && initiator.relations != null && recipient.relations != null)
+                    {
+                        if (dryad.relations.DirectRelationExists(PawnRelationDefOf.Bond, initiator))
+                        {
+                            dryad.relations.RemoveDirectRelation(PawnRelationDefOf.Bond, initiator);
+                        }
+                        if (!dryad.relations.DirectRelationExists(PawnRelationDefOf.Bond, recipient))
+                        {
+                            dryad.playerSettings.Master = recipient;
+                            recipient.relations.AddDirectRelation(PawnRelationDefOf.Bond, dryad);
+                        }
+                    }
                 }
             }
             var letterText = "Goji_ConnectionTransferred_Description".Translate().Formatted(initiator.Named("INITIATOR"), recipient.Named("RECIPIENT")).CapitalizeFirst();
