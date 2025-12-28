@@ -84,11 +84,14 @@ namespace GojisDryadTweaks
                         if (dryad.relations.DirectRelationExists(PawnRelationDefOf.Bond, initiator))
                         {
                             dryad.relations.RemoveDirectRelation(PawnRelationDefOf.Bond, initiator);
+                            if (!dryad.relations.DirectRelationExists(PawnRelationDefOf.Bond, recipient))
+                            {
+                                recipient.relations.AddDirectRelation(PawnRelationDefOf.Bond, dryad);
+                            }
                         }
-                        if (!dryad.relations.DirectRelationExists(PawnRelationDefOf.Bond, recipient))
+                        if (dryad.playerSettings.Master == initiator)
                         {
                             dryad.playerSettings.Master = recipient;
-                            recipient.relations.AddDirectRelation(PawnRelationDefOf.Bond, dryad);
                         }
                     }
                 }
