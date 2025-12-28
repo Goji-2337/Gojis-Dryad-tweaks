@@ -62,7 +62,7 @@
     <Operation Class="PatchOperationSequence">
         <operations>
             <li Class="PatchOperationAdd">
-                <xpath>Defs/ThingDef[defName="Dryad_Berrymaker" or defName="Dryad_Medicinemaker" or defName="Dryad_Woodmaker"]/race</xpath>
+                <xpath>Defs/ThingDef[defName="Dryad_Berrymaker" or defName="Dryad_Medicinemaker" or defName="Dryad_Woodmaker" or defName="Dryad_Basic"]/race</xpath>
                 <value>
                     <trainability>Intermediate</trainability>
                 </value>
