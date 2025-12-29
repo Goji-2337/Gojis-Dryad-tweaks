@@ -9,6 +9,7 @@ namespace GojisDryadTweaks
         public static PreceptDef Goji_DryadLifespan_Immortal;
         public static PreceptDef Goji_DryadAutonomy_High;
         public static PreceptDef Goji_GauranlenConnection_NatureAttuned;
+        public static PreceptDef Goji_GauranlenConnection_CompromisedPact;
         public static ThingDef PlantPot_Bonsai;
         public static JobDef Goji_EnterHealingPod;
         public static JobDef Goji_EnterCocoon;

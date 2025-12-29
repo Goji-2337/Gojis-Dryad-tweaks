@@ -37,4 +37,16 @@
         </requiredMemes>
     </PreceptDef>
 
+    <PreceptDef>
+        <defName>Goji_GauranlenConnection_CompromisedPact</defName>
+        <issue>Goji_GauranlenConnectionStrength</issue>
+        <label>compromised pact</label>
+        <description>The Gauranlen connection is compromised. The queen reached a pact with us to endure unnatural surroundings. With heavy hearts, we plant them in such terrible places for our little hope.</description>
+        <impact>Medium</impact>
+        <displayOrderInIssue>80</displayOrderInIssue>
+        <requiredMemes>
+            <li>TreeConnection</li>
+        </requiredMemes>
+    </PreceptDef>
+
 </Defs>

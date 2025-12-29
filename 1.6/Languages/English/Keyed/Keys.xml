@@ -19,4 +19,5 @@
     <Goji_MustHaveInjuryOrIllnessForCocoon>{PAWN_kindDef} does not have any significant injuries or illnesses requiring cocoon healing.</Goji_MustHaveInjuryOrIllnessForCocoon>
     <Goji_CocoonHealedAllWounds>{0} has had all wounds healed by the cocoon.</Goji_CocoonHealedAllWounds>
     <Goji_CocoonHealedPermanentWound>{0} has had a permanent wound in the {1} healed by the cocoon.</Goji_CocoonHealedPermanentWound>
+    <Goji_CompromisedPactMentalBreakThreshold>Compromised pact</Goji_CompromisedPactMentalBreakThreshold>
 </LanguageData>

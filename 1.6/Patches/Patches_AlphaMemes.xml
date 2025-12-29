@@ -39,6 +39,17 @@
                         </requiredMemes>
                     </value>
                 </li>
+                <li Class="PatchOperationRemove">
+                    <xpath>/Defs/PreceptDef[defName="Goji_GauranlenConnection_CompromisedPact"]/requiredMemes</xpath>
+                </li>
+                <li Class="PatchOperationAdd">
+                    <xpath>/Defs/PreceptDef[defName="Goji_GauranlenConnection_CompromisedPact"]</xpath>
+                    <value>
+                        <requiredMemes>
+                            <li>AM_GauranlenSupremacy</li>
+                        </requiredMemes>
+                    </value>
+                </li>
                 <li Class="PatchOperationConditional">
                     <xpath>/Defs/MemeDef[defName="AM_GauranlenSupremacy"]/requireOne</xpath>
                     <match Class="PatchOperationAdd">
@@ -52,6 +63,9 @@
                             </li>
                             <li>
                                 <li>Goji_GauranlenConnection_NatureAttuned</li>
+                            </li>
+                            <li>
+                                <li>Goji_GauranlenConnection_CompromisedPact</li>
                             </li>
                         </value>
                     </match>
@@ -67,6 +81,9 @@
                                 </li>
                                 <li>
                                     <li>Goji_GauranlenConnection_NatureAttuned</li>
+                                </li>
+                                <li>
+                                    <li>Goji_GauranlenConnection_CompromisedPact</li>
                                 </li>
                             </requireOne>
                         </value>
