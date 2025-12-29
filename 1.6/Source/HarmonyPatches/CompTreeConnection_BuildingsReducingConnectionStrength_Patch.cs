@@ -5,11 +5,12 @@ using Verse;
 
 namespace GojisDryadTweaks
 {
+    [HotSwappable]
     [HarmonyPatch(typeof(CompTreeConnection), nameof(CompTreeConnection.BuildingsReducingConnectionStrength), MethodType.Getter)]
     public static class CompTreeConnection_BuildingsReducingConnectionStrength_Patch
     {
         public static bool doNotModify;
-        public static void Postfix(List<Thing> __result, CompTreeConnection __instance)
+        public static void Postfix(ref List<Thing> __result, CompTreeConnection __instance)
         {
             Pawn connectedPawn = __instance.ConnectedPawn;
             if (connectedPawn == null || connectedPawn.Ideo == null)
@@ -20,9 +21,11 @@ namespace GojisDryadTweaks
             bool natureAttuned = connectedPawn.Ideo.HasPrecept(GojiDefsOf.Goji_GauranlenConnection_NatureAttuned);
             bool compromisedPact = connectedPawn.Ideo.HasPrecept(GojiDefsOf.Goji_GauranlenConnection_CompromisedPact);
 
+            List<Thing> newResult = [.. __result];
+
             if (natureAttuned)
             {
-                __result.RemoveAll(thing =>
+                newResult.RemoveAll(thing =>
                     (thing.Stuff != null && (thing.Stuff.stuffProps.categories.Contains(StuffCategoryDefOf.Woody) || thing.Stuff.stuffProps.categories.Contains(StuffCategoryDefOf.Stony)))
                 );
             }
@@ -31,10 +34,11 @@ namespace GojisDryadTweaks
             {
                 return;
             }
-            if (compromisedPact && __result.Count > 0)
+            if (compromisedPact && newResult.Count > 0)
             {
-                __result.Clear();
+                newResult.Clear();
             }
+            __result = newResult;
         }
     }
 }

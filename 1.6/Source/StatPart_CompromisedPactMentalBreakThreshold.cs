@@ -4,6 +4,7 @@ using Verse;
 
 namespace GojisDryadTweaks
 {
+    [HotSwappable]
     public class StatPart_CompromisedPactMentalBreakThreshold : StatPart
     {
         private const float MentalBreakThresholdBonus = 0.08f;
@@ -45,10 +46,13 @@ namespace GojisDryadTweaks
             }
             CompTreeConnection_BuildingsReducingConnectionStrength_Patch.doNotModify = true;
             var result = pawn.connections.ConnectedThings.Any(thing =>
-                thing is Plant plant &&
-                plant.TryGetComp(out CompTreeConnection comp) &&
-                comp.Connected &&
-                comp.BuildingsReducingConnectionStrength.Any());
+            {
+                if (thing is Plant plant && plant.TryGetComp(out CompTreeConnection comp))
+                {
+                    return comp.Connected && comp.BuildingsReducingConnectionStrength.Any();
+                }
+                return false;
+            });
             CompTreeConnection_BuildingsReducingConnectionStrength_Patch.doNotModify = false;
             return result;
         }
